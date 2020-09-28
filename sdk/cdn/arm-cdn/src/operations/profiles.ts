@@ -52,7 +52,7 @@ export class Profiles {
   }
 
   /**
-   * Lists all of the CDN profiles within a resource group.
+   * Lists all of the CDN profiles within a resource group. xx
    * @param resourceGroupName Name of the Resource group within the Azure subscription.
    * @param [options] The optional parameters
    * @returns Promise<Models.ProfilesListByResourceGroupResponse>
@@ -341,7 +341,7 @@ export class Profiles {
   }
 
   /**
-   * Lists all of the CDN profiles within a resource group.
+   * Lists all of the CDN profiles within a resource group. xx
    * @param nextPageLink The NextLink from the previous successful call to List operation.
    * @param [options] The optional parameters
    * @returns Promise<Models.ProfilesListByResourceGroupNextResponse>
