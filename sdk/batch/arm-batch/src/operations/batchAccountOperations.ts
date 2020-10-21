@@ -86,11 +86,11 @@ export class BatchAccountOperations {
    * @param resourceGroupName The name of the resource group that contains the Batch account.
    * @param accountName The name of the Batch account.
    * @param [options] The optional parameters
-   * @returns Promise<Models.BatchAccountDeleteResponse>
+   * @returns Promise<Models.BatchAccountDeleteABCResponse>
    */
-  deleteMethod(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<Models.BatchAccountDeleteResponse> {
-    return this.beginDeleteMethod(resourceGroupName,accountName,options)
-      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.BatchAccountDeleteResponse>;
+  deleteABC(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<Models.BatchAccountDeleteABCResponse> {
+    return this.beginDeleteABC(resourceGroupName,accountName,options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.BatchAccountDeleteABCResponse>;
   }
 
   /**
@@ -317,14 +317,14 @@ export class BatchAccountOperations {
    * @param [options] The optional parameters
    * @returns Promise<msRestAzure.LROPoller>
    */
-  beginDeleteMethod(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginDeleteABC(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
       {
         resourceGroupName,
         accountName,
         options
       },
-      beginDeleteMethodOperationSpec,
+      beginDeleteABCOperationSpec,
       options);
   }
 
@@ -392,7 +392,7 @@ const updateOperationSpec: msRest.OperationSpec = {
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}",
   urlParameters: [
     Parameters.resourceGroupName,
-    Parameters.accountName,
+    Parameters.accountName1,
     Parameters.subscriptionId
   ],
   queryParameters: [
@@ -424,7 +424,7 @@ const getOperationSpec: msRest.OperationSpec = {
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}",
   urlParameters: [
     Parameters.resourceGroupName,
-    Parameters.accountName,
+    Parameters.accountName1,
     Parameters.subscriptionId
   ],
   queryParameters: [
@@ -496,7 +496,7 @@ const synchronizeAutoStorageKeysOperationSpec: msRest.OperationSpec = {
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/syncAutoStorageKeys",
   urlParameters: [
     Parameters.resourceGroupName,
-    Parameters.accountName,
+    Parameters.accountName1,
     Parameters.subscriptionId
   ],
   queryParameters: [
@@ -519,7 +519,7 @@ const regenerateKeyOperationSpec: msRest.OperationSpec = {
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/regenerateKeys",
   urlParameters: [
     Parameters.resourceGroupName,
-    Parameters.accountName,
+    Parameters.accountName1,
     Parameters.subscriptionId
   ],
   queryParameters: [
@@ -553,7 +553,7 @@ const getKeysOperationSpec: msRest.OperationSpec = {
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/listKeys",
   urlParameters: [
     Parameters.resourceGroupName,
-    Parameters.accountName,
+    Parameters.accountName1,
     Parameters.subscriptionId
   ],
   queryParameters: [
@@ -578,7 +578,7 @@ const beginCreateOperationSpec: msRest.OperationSpec = {
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}",
   urlParameters: [
     Parameters.resourceGroupName,
-    Parameters.accountName,
+    Parameters.accountName0,
     Parameters.subscriptionId
   ],
   queryParameters: [
@@ -603,18 +603,19 @@ const beginCreateOperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.BatchAccountCreateHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.BatchAccountCreateHeaders
     }
   },
   serializer
 };
 
-const beginDeleteMethodOperationSpec: msRest.OperationSpec = {
+const beginDeleteABCOperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}",
   urlParameters: [
     Parameters.resourceGroupName,
-    Parameters.accountName,
+    Parameters.accountName1,
     Parameters.subscriptionId
   ],
   queryParameters: [
@@ -625,16 +626,17 @@ const beginDeleteMethodOperationSpec: msRest.OperationSpec = {
   ],
   responses: {
     200: {
-      headersMapper: Mappers.BatchAccountDeleteHeaders
+      headersMapper: Mappers.BatchAccountDeleteABCHeaders
     },
     202: {
-      headersMapper: Mappers.BatchAccountDeleteHeaders
+      headersMapper: Mappers.BatchAccountDeleteABCHeaders
     },
     204: {
-      headersMapper: Mappers.BatchAccountDeleteHeaders
+      headersMapper: Mappers.BatchAccountDeleteABCHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.BatchAccountDeleteABCHeaders
     }
   },
   serializer
