@@ -38,11 +38,11 @@ export class BatchAccountOperations {
    * http://accountname.region.batch.azure.com/.
    * @param parameters Additional parameters for account creation.
    * @param [options] The optional parameters
-   * @returns Promise<Models.BatchAccountCreateResponse>
+   * @returns Promise<Models.BatchAccountCreateXResponse>
    */
-  create(resourceGroupName: string, accountName: string, parameters: Models.BatchAccountCreateParameters, options?: msRest.RequestOptionsBase): Promise<Models.BatchAccountCreateResponse> {
-    return this.beginCreate(resourceGroupName,accountName,parameters,options)
-      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.BatchAccountCreateResponse>;
+  createX(resourceGroupName: string, accountName: string, parameters: Models.BatchAccountCreateParameters, options?: msRest.RequestOptionsBase): Promise<Models.BatchAccountCreateXResponse> {
+    return this.beginCreateX(resourceGroupName,accountName,parameters,options)
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.BatchAccountCreateXResponse>;
   }
 
   /**
@@ -298,7 +298,7 @@ export class BatchAccountOperations {
    * @param [options] The optional parameters
    * @returns Promise<msRestAzure.LROPoller>
    */
-  beginCreate(resourceGroupName: string, accountName: string, parameters: Models.BatchAccountCreateParameters, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginCreateX(resourceGroupName: string, accountName: string, parameters: Models.BatchAccountCreateParameters, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
       {
         resourceGroupName,
@@ -306,7 +306,7 @@ export class BatchAccountOperations {
         parameters,
         options
       },
-      beginCreateOperationSpec,
+      beginCreateXOperationSpec,
       options);
   }
 
@@ -392,7 +392,7 @@ const updateOperationSpec: msRest.OperationSpec = {
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}",
   urlParameters: [
     Parameters.resourceGroupName,
-    Parameters.accountName,
+    Parameters.accountName1,
     Parameters.subscriptionId
   ],
   queryParameters: [
@@ -424,7 +424,7 @@ const getOperationSpec: msRest.OperationSpec = {
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}",
   urlParameters: [
     Parameters.resourceGroupName,
-    Parameters.accountName,
+    Parameters.accountName1,
     Parameters.subscriptionId
   ],
   queryParameters: [
@@ -496,7 +496,7 @@ const synchronizeAutoStorageKeysOperationSpec: msRest.OperationSpec = {
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/syncAutoStorageKeys",
   urlParameters: [
     Parameters.resourceGroupName,
-    Parameters.accountName,
+    Parameters.accountName1,
     Parameters.subscriptionId
   ],
   queryParameters: [
@@ -519,7 +519,7 @@ const regenerateKeyOperationSpec: msRest.OperationSpec = {
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/regenerateKeys",
   urlParameters: [
     Parameters.resourceGroupName,
-    Parameters.accountName,
+    Parameters.accountName1,
     Parameters.subscriptionId
   ],
   queryParameters: [
@@ -553,7 +553,7 @@ const getKeysOperationSpec: msRest.OperationSpec = {
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/listKeys",
   urlParameters: [
     Parameters.resourceGroupName,
-    Parameters.accountName,
+    Parameters.accountName1,
     Parameters.subscriptionId
   ],
   queryParameters: [
@@ -573,12 +573,12 @@ const getKeysOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginCreateOperationSpec: msRest.OperationSpec = {
+const beginCreateXOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}",
   urlParameters: [
     Parameters.resourceGroupName,
-    Parameters.accountName,
+    Parameters.accountName0,
     Parameters.subscriptionId
   ],
   queryParameters: [
@@ -597,13 +597,14 @@ const beginCreateOperationSpec: msRest.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.BatchAccount,
-      headersMapper: Mappers.BatchAccountCreateHeaders
+      headersMapper: Mappers.BatchAccountCreateXHeaders
     },
     202: {
-      headersMapper: Mappers.BatchAccountCreateHeaders
+      headersMapper: Mappers.BatchAccountCreateXHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.BatchAccountCreateXHeaders
     }
   },
   serializer
@@ -614,7 +615,7 @@ const beginDeleteMethodOperationSpec: msRest.OperationSpec = {
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}",
   urlParameters: [
     Parameters.resourceGroupName,
-    Parameters.accountName,
+    Parameters.accountName1,
     Parameters.subscriptionId
   ],
   queryParameters: [
@@ -634,7 +635,8 @@ const beginDeleteMethodOperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.BatchAccountDeleteHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.BatchAccountDeleteHeaders
     }
   },
   serializer
