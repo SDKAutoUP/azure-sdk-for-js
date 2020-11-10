@@ -52,31 +52,31 @@ export class Profiles {
   }
 
   /**
-   * Lists all of the CDN profiles within a resource group.
+   * Lists all of the CDN profiles within a resource group. xx
    * @param resourceGroupName Name of the Resource group within the Azure subscription.
    * @param [options] The optional parameters
-   * @returns Promise<Models.ProfilesListByResourceGroupResponse>
+   * @returns Promise<Models.ProfilesListByResourceGroupXResponse>
    */
-  listByResourceGroup(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.ProfilesListByResourceGroupResponse>;
+  listByResourceGroupX(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.ProfilesListByResourceGroupXResponse>;
   /**
    * @param resourceGroupName Name of the Resource group within the Azure subscription.
    * @param callback The callback
    */
-  listByResourceGroup(resourceGroupName: string, callback: msRest.ServiceCallback<Models.ProfileListResult>): void;
+  listByResourceGroupX(resourceGroupName: string, callback: msRest.ServiceCallback<Models.ProfileListResult>): void;
   /**
    * @param resourceGroupName Name of the Resource group within the Azure subscription.
    * @param options The optional parameters
    * @param callback The callback
    */
-  listByResourceGroup(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProfileListResult>): void;
-  listByResourceGroup(resourceGroupName: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ProfileListResult>, callback?: msRest.ServiceCallback<Models.ProfileListResult>): Promise<Models.ProfilesListByResourceGroupResponse> {
+  listByResourceGroupX(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProfileListResult>): void;
+  listByResourceGroupX(resourceGroupName: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ProfileListResult>, callback?: msRest.ServiceCallback<Models.ProfileListResult>): Promise<Models.ProfilesListByResourceGroupXResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         options
       },
-      listByResourceGroupOperationSpec,
-      callback) as Promise<Models.ProfilesListByResourceGroupResponse>;
+      listByResourceGroupXOperationSpec,
+      callback) as Promise<Models.ProfilesListByResourceGroupXResponse>;
   }
 
   /**
@@ -341,31 +341,31 @@ export class Profiles {
   }
 
   /**
-   * Lists all of the CDN profiles within a resource group.
+   * Lists all of the CDN profiles within a resource group. xx
    * @param nextPageLink The NextLink from the previous successful call to List operation.
    * @param [options] The optional parameters
-   * @returns Promise<Models.ProfilesListByResourceGroupNextResponse>
+   * @returns Promise<Models.ProfilesListByResourceGroupXNextResponse>
    */
-  listByResourceGroupNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.ProfilesListByResourceGroupNextResponse>;
+  listByResourceGroupXNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.ProfilesListByResourceGroupXNextResponse>;
   /**
    * @param nextPageLink The NextLink from the previous successful call to List operation.
    * @param callback The callback
    */
-  listByResourceGroupNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ProfileListResult>): void;
+  listByResourceGroupXNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ProfileListResult>): void;
   /**
    * @param nextPageLink The NextLink from the previous successful call to List operation.
    * @param options The optional parameters
    * @param callback The callback
    */
-  listByResourceGroupNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProfileListResult>): void;
-  listByResourceGroupNext(nextPageLink: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ProfileListResult>, callback?: msRest.ServiceCallback<Models.ProfileListResult>): Promise<Models.ProfilesListByResourceGroupNextResponse> {
+  listByResourceGroupXNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProfileListResult>): void;
+  listByResourceGroupXNext(nextPageLink: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ProfileListResult>, callback?: msRest.ServiceCallback<Models.ProfileListResult>): Promise<Models.ProfilesListByResourceGroupXNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listByResourceGroupNextOperationSpec,
-      callback) as Promise<Models.ProfilesListByResourceGroupNextResponse>;
+      listByResourceGroupXNextOperationSpec,
+      callback) as Promise<Models.ProfilesListByResourceGroupXNextResponse>;
   }
 
   /**
@@ -422,7 +422,7 @@ const listOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const listByResourceGroupOperationSpec: msRest.OperationSpec = {
+const listByResourceGroupXOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles",
   urlParameters: [
@@ -669,7 +669,7 @@ const listNextOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const listByResourceGroupNextOperationSpec: msRest.OperationSpec = {
+const listByResourceGroupXNextOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   baseUrl: "https://management.azure.com",
   path: "{nextLink}",
