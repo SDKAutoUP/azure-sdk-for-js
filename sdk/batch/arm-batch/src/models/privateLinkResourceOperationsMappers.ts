@@ -41,7 +41,7 @@ export {
   KeyVaultProperties,
   KeyVaultReference,
   LinuxUserConfiguration,
-  ListApplicationsResult,
+  ListPrivateLinkResourcesResult,
   MetadataItem,
   MountConfiguration,
   NetworkConfiguration,
